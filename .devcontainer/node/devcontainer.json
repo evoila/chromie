@@ -1,0 +1,19 @@
+{
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "eamodio.gitlens",
+        "esbenp.prettier-vscode",
+        "foxundermoon.shell-format",
+        "ms-azuretools.vscode-docker",
+        "GitHub.copilot-chat",
+        "GitHub.copilot"
+      ]
+    }
+  },
+  "dockerComposeFile": "../docker-compose.yml",
+  "name": "ideal-train",
+  "service": "node",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
+}
