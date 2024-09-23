@@ -1,0 +1,1 @@
+ALTER TABLE "slots" ADD COLUMN "status" "status" DEFAULT 'open' NOT NULL;
