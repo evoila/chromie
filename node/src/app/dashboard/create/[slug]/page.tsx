@@ -26,7 +26,7 @@ interface SectionProps {
   setPosition: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const Section: React.FC<SectionProps> = ({
+const Section: React.FC<SectionProps> = ({
   children,
   heading,
   paragraph,

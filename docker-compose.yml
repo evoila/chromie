@@ -1,5 +1,21 @@
 services:
   node:
-    build:
-      context: node
-      dockerfile: Dockerfile
+    env_file:
+      - .env
+    image: mariusraupach/ideal-train:dev
+    ports:
+      - 3005:3000
+    # build:
+    #   context: node
+    #   dockerfile: Dockerfile
+
+  postgres:
+    env_file:
+      - .env
+    hostname: postgres
+    image: postgres:latest
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:

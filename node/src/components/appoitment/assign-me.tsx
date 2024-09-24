@@ -16,9 +16,9 @@ export const AssignMe = React.forwardRef<HTMLDivElement, AssignMeProps>(
       queryFn: async () => await readUser(),
     });
 
-    if (!user) return null;
-
     const queryClient = useQueryClient();
+
+    if (!user) return null;
 
     const handleOnClick = async (event: React.MouseEvent<HTMLDivElement>) => {
       event.preventDefault();
@@ -40,3 +40,5 @@ export const AssignMe = React.forwardRef<HTMLDivElement, AssignMeProps>(
     );
   },
 );
+
+AssignMe.displayName = "AssignMe";
