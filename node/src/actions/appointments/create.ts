@@ -23,6 +23,6 @@ export async function createAppointment(
     description: parsed.data.description,
     modified: new Date(),
     title: parsed.data.title,
-    creator: user.id,
+    requesterId: user.id,
   });
 }

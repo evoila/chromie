@@ -2,7 +2,7 @@ import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 
-import { users } from "@/lib/schemas";
+import { comments, users } from "@/lib/schemas";
 
 export const questions = pgTable("questions", {
   id: serial("id").primaryKey(),
@@ -10,17 +10,17 @@ export const questions = pgTable("questions", {
   description: text("description").notNull(),
   modified: timestamp("modified").notNull(),
   title: text("text").notNull(),
-  creator: text("creator")
+  requesterId: text("requester_id")
     .notNull()
     .references(() => users.id),
 });
 
 export const questionsRelations = relations(questions, ({ many, one }) => ({
-  creator: one(users, {
-    fields: [questions.creator],
+  comments: many(comments),
+  requester: one(users, {
+    fields: [questions.requesterId],
     references: [users.id],
   }),
-  questions: many(questions),
 }));
 
 export const insertQuestionSchema = createInsertSchema(questions, {

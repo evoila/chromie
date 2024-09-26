@@ -1,14 +1,11 @@
 import { date, pgEnum, pgTable, serial, text } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 
-export const statusEnum = pgEnum("status", ["open", "closed"]);
-
 export const slots = pgTable("slots", {
   id: serial("id").primaryKey(),
   date: date("date").notNull(),
   end: text("end").notNull(),
   start: text("start").notNull(),
-  status: statusEnum("status").default("open").notNull(),
 });
 
 const pattern = /^([0-9]|1[0-9]|2[0-4]):(00|15|30|45)$/;

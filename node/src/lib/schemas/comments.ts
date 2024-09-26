@@ -8,25 +8,25 @@ export const comments = pgTable("comments", {
   id: text("id").primaryKey(),
   created: timestamp("timestamp").notNull(),
   message: text("message").notNull(),
-  appointment: integer("appointment").references(() => appointments.id),
-  question: integer("question").references(() => questions.id),
-  creator: text("creator")
+  appointmentId: integer("appointment_id").references(() => appointments.id),
+  creatorId: text("creator_id")
     .notNull()
     .references(() => users.id),
+  questionId: integer("question_id").references(() => questions.id),
 });
 
 export const commentsRelations = relations(comments, ({ one }) => ({
   appointment: one(appointments, {
-    fields: [comments.appointment],
+    fields: [comments.appointmentId],
     references: [appointments.id],
   }),
-  question: one(questions, {
-    fields: [comments.question],
-    references: [questions.id],
-  }),
   creator: one(users, {
-    fields: [comments.creator],
+    fields: [comments.creatorId],
     references: [users.id],
+  }),
+  question: one(questions, {
+    fields: [comments.questionId],
+    references: [questions.id],
   }),
 }));
 

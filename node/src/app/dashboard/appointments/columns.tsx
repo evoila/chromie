@@ -24,7 +24,7 @@ export const columns = [
     header: "Status",
   }),
   columnHelper.accessor(
-    (row) => `${row.creator.firstName} ${row.creator.lastName}`,
+    (row) => `${row.requester.firstName} ${row.requester.lastName}`,
     {
       cell: (info) => info.getValue(),
       header: "Requester",
@@ -33,7 +33,9 @@ export const columns = [
   ),
   columnHelper.accessor(
     (row) =>
-      row.revisor ? `${row.revisor.firstName} ${row.revisor.lastName}` : "",
+      row.responder
+        ? `${row.responder.firstName} ${row.responder.lastName}`
+        : "",
     {
       cell: (info) => info.getValue(),
       header: "Responder",

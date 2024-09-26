@@ -1,4 +1,10 @@
-import { Calendar, MessageSquare, Settings, Triangle } from "lucide-react";
+import {
+  Calendar,
+  MessageSquare,
+  Settings,
+  Triangle,
+  User,
+} from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -24,11 +30,13 @@ export const Aside: React.FC = () => {
           </Button>
         </div>
       </nav>
-      <Link href="/dashboard/settings">
-        <Button aspect="square" intent="light">
-          <Settings />
-        </Button>
-      </Link>
+      <div className="flex flex-col gap-3">
+        <Link href="/dashboard/settings">
+          <Button aspect="square" intent="light">
+            <Settings />
+          </Button>
+        </Link>
+      </div>
     </aside>
   );
 };

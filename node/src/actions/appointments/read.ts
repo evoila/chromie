@@ -6,31 +6,6 @@ import { validateRequest } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { appointments } from "@/lib/schemas";
 
-export async function readAppointments() {
-  const { user } = await validateRequest();
-
-  if (!user) return [];
-
-  return await db.query.appointments.findMany({
-    where:
-      user.role !== "responder" ? eq(appointments.creator, user.id) : undefined,
-    with: {
-      creator: {
-        columns: {
-          firstName: true,
-          lastName: true,
-        },
-      },
-      revisor: {
-        columns: {
-          firstName: true,
-          lastName: true,
-        },
-      },
-    },
-  });
-}
-
 export async function readAppointment(id: number) {
   const { user } = await validateRequest();
 
@@ -38,11 +13,13 @@ export async function readAppointment(id: number) {
 
   return await db.query.appointments.findFirst({
     where: and(
-      user.role !== "responder" ? eq(appointments.creator, user.id) : undefined,
+      user.role !== "responder"
+        ? eq(appointments.requesterId, user.id)
+        : undefined,
       eq(appointments.id, id),
     ),
     with: {
-      creator: {
+      requester: {
         columns: {
           firstName: true,
           lastName: true,
@@ -63,7 +40,34 @@ export async function readAppointment(id: number) {
           },
         },
       },
-      revisor: {
+      responder: {
+        columns: {
+          firstName: true,
+          lastName: true,
+        },
+      },
+    },
+  });
+}
+
+export async function readAppointments() {
+  const { user } = await validateRequest();
+
+  if (!user) return [];
+
+  return await db.query.appointments.findMany({
+    where:
+      user.role !== "responder"
+        ? eq(appointments.requesterId, user.id)
+        : undefined,
+    with: {
+      requester: {
+        columns: {
+          firstName: true,
+          lastName: true,
+        },
+      },
+      responder: {
         columns: {
           firstName: true,
           lastName: true,

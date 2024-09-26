@@ -1,3 +1,3 @@
 export { createAppointment } from "./create";
-export { readAppointments, readAppointment } from "./read";
+export { readAppointment, readAppointments } from "./read";
 export { updateResponder } from "./update";

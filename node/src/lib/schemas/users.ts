@@ -4,7 +4,7 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 import { appointments, questions } from "@/lib/schemas";
 
-export const roleEnum = pgEnum("role", ["requester", "responder"]);
+export const roleEnum = pgEnum("user_roles", ["requester", "responder"]);
 
 export const users = pgTable("users", {
   id: text("id").primaryKey(),

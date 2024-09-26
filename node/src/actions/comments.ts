@@ -35,18 +35,18 @@ export async function createComment(
         id: id,
         created: new Date(),
         message: parsed.data.message,
-        creator: user.id,
-        appointment: params.appointment,
-        question: null,
+        appointmentId: params.appointment,
+        creatorId: user.id,
+        questionId: null,
       });
     } else if ("question" in params) {
       await db.insert(comments).values({
         id: id,
         created: new Date(),
         message: parsed.data.message,
-        creator: user.id,
-        appointment: null,
-        question: params.question,
+        appointmentId: null,
+        creatorId: user.id,
+        questionId: params.question,
       });
     } else {
       throw new Error();

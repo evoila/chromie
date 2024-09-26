@@ -1,1 +1,0 @@
-ALTER TABLE "comments" RENAME COLUMN "value" TO "message";

@@ -1,29 +1,30 @@
 export {
-  appointmentsRelations,
   appointments,
+  appointmentsRelations,
   insertAppointmentSchema,
+  statusEnum,
 } from "@/lib/schemas/appointments";
 
 export {
-  commentsRelations,
   comments,
+  commentsRelations,
   insertCommentSchema,
 } from "@/lib/schemas/comments";
 
 export {
-  questionsRelations,
-  questions,
   insertQuestionSchema,
+  questions,
+  questionsRelations,
 } from "@/lib/schemas/questions";
 
 export { sessions } from "@/lib/schemas/sessions";
 
-export { insertSlotSchema, slots, statusEnum } from "@/lib/schemas/slots";
+export { insertSlotSchema, slots } from "@/lib/schemas/slots";
 
 export {
   insertUserSchema,
   roleEnum,
   selectUserSchema,
-  usersRelations,
   users,
+  usersRelations,
 } from "@/lib/schemas/users";

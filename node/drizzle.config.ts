@@ -6,6 +6,7 @@ export default defineConfig({
     host: process.env.POSTGRES_HOST || "host",
     password: process.env.POSTGRES_PASSWORD,
     port: Number(process.env.POSTGRES_PORT),
+    ssl: false,
     user: process.env.POSTGRES_USER,
   },
   dialect: "postgresql",
