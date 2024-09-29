@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: "{{ .Release.Name }}"
 data:
-  NODE_ENV: "{{ .Values.node.env.NODE_ENV }}"
+  NODE_ENV: "production"
   POSTGRES_DB: "{{ .Values.postgres.env.POSTGRES_DB }}"
   POSTGRES_HOST: "{{ .Release.Name }}-postgres"
   POSTGRES_USER: "{{ .Values.postgres.env.POSTGRES_USER }}"

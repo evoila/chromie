@@ -6,7 +6,7 @@ metadata:
     name: "{{ .Release.Name }}-node"
 spec:
   rules:
-    - host: "node.k8s.orb.local"
+    - host: "{{ .Values.node.host }}"
       http:
         paths:
           - pathType: Prefix

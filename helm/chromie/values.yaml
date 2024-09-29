@@ -1,6 +1,5 @@
 node:
-  env:
-    NODE_ENV: "production"
+  host: "node.k8s.orb.local"
   image:
     tag: "latest"
   resources:
