@@ -13,7 +13,7 @@
     }
   },
   "dockerComposeFile": "../docker-compose.yml",
-  "name": "ideal-train",
+  "name": "gond",
   "service": "node",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
 }

@@ -19,7 +19,9 @@ export {
 
 export { sessions } from "@/lib/schemas/sessions";
 
-export { insertSlotSchema, slots } from "@/lib/schemas/slots";
+export { insertTimeSlotSchema, timeSlots } from "@/lib/schemas/time-slots";
+
+export { insertTimeRangeSchema, timeRanges } from "@/lib/schemas/time-ranges";
 
 export {
   insertUserSchema,

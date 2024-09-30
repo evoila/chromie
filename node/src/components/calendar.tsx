@@ -13,8 +13,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import React from "react";
 import { create } from "zustand";
 
-import { Button } from "@/components/elements/button";
 import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
+import { readTimeRangesForDate } from "@/actions/time-ranges";
 
 interface CalendarState {
   currentMonth: Date;
@@ -42,6 +43,11 @@ interface DayProps {
 }
 
 const Day: React.FC<DayProps> = ({ date }) => {
+  const { data } = useQuery({
+    queryKey: ["time_ranges", date],
+    queryFn: async () => await readTimeRangesForDate(date),
+  });
+
   const { currentMonth, selectedDate, setSelectedDate } = useCalendarStore();
   const today = new Date();
 
@@ -50,7 +56,7 @@ const Day: React.FC<DayProps> = ({ date }) => {
   const isToday = isSameDay(today, date);
 
   const classNames = cn(
-    "flex items-center justify-center rounded-lg",
+    "flex items-center justify-center rounded-lg disabled:text-muted",
     isSelected && "bg-muted",
     !isCurrentMonth && "text-muted",
     isToday && "text-destructive",
@@ -59,6 +65,7 @@ const Day: React.FC<DayProps> = ({ date }) => {
   return (
     <button
       className={classNames}
+      disabled={!data?.date}
       onClick={() => setSelectedDate(date)}
       type="button"
     >
@@ -80,28 +87,18 @@ export const Calendar: React.FC = () => {
 
   return (
     <div className="flex aspect-square h-full flex-col rounded-lg border">
-      <div className="flex items-center justify-between gap-3 border-b p-3 pl-6">
-        <div>{format(currentMonth, "MMMM yyyy")}</div>
+      <div className="flex h-12 items-center justify-between gap-3 border-b px-3">
+        <div className="font-semibold">{format(currentMonth, "MMMM yyyy")}</div>
         <div className="flex items-center gap-3">
-          <Button
-            aspect="square"
-            intent="light"
-            onClick={previousMonth}
-            type="button"
-          >
-            <ChevronLeft />
-          </Button>
-          <Button intent="light" onClick={resetToToday} type="button">
-            Today
-          </Button>
-          <Button
-            aspect="square"
-            intent="light"
-            onClick={nextMonth}
-            type="button"
-          >
-            <ChevronRight />
-          </Button>
+          <button onClick={previousMonth} type="button">
+            <ChevronLeft className="size-4" />
+          </button>
+          <button onClick={resetToToday} type="button">
+            Heute
+          </button>
+          <button onClick={nextMonth} type="button">
+            <ChevronRight className="size-4" />
+          </button>
         </div>
       </div>
       <div className="grid grow grid-cols-7 grid-rows-6 gap-3 p-3">

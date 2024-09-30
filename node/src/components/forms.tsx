@@ -34,6 +34,16 @@ export const AppointmentForm = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic voluptate magni doloremque iste beatae ut dolorem facilis accusamus architecto, quasi reprehenderit inventore illum sunt suscipit quibusdam provident, adipisci repellat?",
     validators: { onChange: insertAppointmentSchema.shape.date },
   },
+  {
+    children: (field: FieldApi<any, any, any, any>) => (
+      <InputField field={field} placeholder="ideal-train" />
+    ),
+    heading: "Zeit",
+    name: "time",
+    paragraph:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic voluptate magni doloremque iste beatae ut dolorem facilis accusamus architecto, quasi reprehenderit inventore illum sunt suscipit quibusdam provident, adipisci repellat?",
+    validators: { onChange: insertAppointmentSchema.shape.title },
+  },
 ];
 
 export const QuestionForm = [

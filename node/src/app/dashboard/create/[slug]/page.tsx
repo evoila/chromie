@@ -17,6 +17,7 @@ import { AppointmentForm, QuestionForm } from "@/components/forms";
 import { variants } from "@/components/motion-variants";
 
 import { insertAppointmentSchema, insertQuestionSchema } from "@/lib/schemas";
+import { redirect } from "next/navigation";
 
 interface SectionProps {
   children: React.ReactNode;
@@ -115,6 +116,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       };
       onSubmit = async ({ value }: any) => {
         await createAppointment(value);
+        redirect("/dashboard/appointments");
       };
       validators = {
         onChange: insertAppointmentSchema,
@@ -157,7 +159,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   return (
     <motion.form
       animate="animate"
-      className="scrollbar-hide h-full w-1/2 overflow-y-auto"
+      className="h-full w-1/2 overflow-y-auto scrollbar-hide"
       onSubmit={(event) => {
         event.preventDefault();
         event.stopPropagation();

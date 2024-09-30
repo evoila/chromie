@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { format, parse } from "date-fns";
 import { motion } from "framer-motion";
-import { ArrowLeft, Ellipsis } from "lucide-react";
+import { ArrowLeft, Ellipsis, User } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 

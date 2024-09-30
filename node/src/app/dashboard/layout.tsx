@@ -1,8 +1,10 @@
+import { User } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
 
 import { validateRequest } from "@/lib/auth";
 import { Aside } from "@/components/aside";
+import { Button } from "@/components/elements/button";
 
 export default async function Layout({
   children,

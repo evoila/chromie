@@ -9,6 +9,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { motion } from "framer-motion";
+import { User } from "lucide-react";
 import React from "react";
 
 import { readAppointments } from "@/actions/appointments";
@@ -19,6 +20,7 @@ import { Table, Td, Th } from "@/components/elements/table";
 import { variants } from "@/components/motion-variants";
 
 import { columns } from "./columns";
+import { Button } from "@/components/elements/button";
 
 export default function Page() {
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
