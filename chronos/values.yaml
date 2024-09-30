@@ -1,0 +1,20 @@
+node:
+  host: "node.k8s.orb.local"
+  resources:
+    requests:
+      cpu: "1000m"
+      memory: "2Gi"
+
+postgresql:
+  auth:
+    database: database
+    password: password
+    username: username
+  persistence:
+    size: "2Gi"
+  resources:
+    requests:
+      cpu: "1000m"
+      memory: "2Gi"
+
+timezone: Europe/Berlin

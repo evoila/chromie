@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-node"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}-node"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}-node"
+    spec:
+      initContainers:
+        - name: wait-for-postgresql
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              while ! nc -z "{{ .Release.Name }}-postgresql" 5432; do
+                sleep 2
+              done
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      containers:
+        - name: "{{ .Release.Name }}-node"
+          image: "mariusraupach/chronos:0.1.0"
+          resources:
+            limits:
+              cpu: "{{ .Values.node.resources.requests.cpu }}"
+              memory: "{{ .Values.node.resources.requests.memory }}"
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: POSTGRESQL_DB
+              value: "{{ .Values.postgresql.auth.database }}"
+            - name: POSTGRESQL_HOST
+              value: "{{ .Release.Name }}-postgresql"
+            - name: POSTGRESQL_USER
+              value: "{{ .Values.postgresql.auth.username }}"
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-postgresql"
+                  key: password
+            - name: TZ
+              value: "{{ .Values.timezone }}"
+          imagePullPolicy: Always
