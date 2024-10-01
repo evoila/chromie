@@ -15,7 +15,7 @@ import { create } from "zustand";
 
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
-import { readTimeRangesForDate } from "@/actions/time-ranges";
+import { readTimeRangeForDate } from "@/actions/time-ranges";
 
 interface CalendarState {
   currentMonth: Date;
@@ -45,7 +45,7 @@ interface DayProps {
 const Day: React.FC<DayProps> = ({ date }) => {
   const { data } = useQuery({
     queryKey: ["time_ranges", date],
-    queryFn: async () => await readTimeRangesForDate(date),
+    queryFn: async () => await readTimeRangeForDate(date),
   });
 
   const { currentMonth, selectedDate, setSelectedDate } = useCalendarStore();

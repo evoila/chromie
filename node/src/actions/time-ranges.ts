@@ -25,7 +25,7 @@ export async function readTimeRanges() {
   return await db.query.timeRanges.findMany();
 }
 
-export async function readTimeRangesForDate(date: Date) {
+export async function readTimeRangeForDate(date: Date) {
   const result = await db.query.timeRanges.findFirst({
     where: eq(timeRanges.date, format(date, "yyyy-MM-dd")),
   });

@@ -3,6 +3,8 @@ import { FieldApi } from "@tanstack/react-form";
 import { DateField, InputField, TextareaField } from "@/components/fields";
 import { insertAppointmentSchema, insertQuestionSchema } from "@/lib/schemas";
 
+import { TimeField } from "./fields/time-field";
+
 export const AppointmentForm = [
   {
     children: (field: FieldApi<any, any, any, any>) => (
@@ -36,7 +38,7 @@ export const AppointmentForm = [
   },
   {
     children: (field: FieldApi<any, any, any, any>) => (
-      <InputField field={field} placeholder="ideal-train" />
+      <TimeField field={field} placeholder="ideal-train" />
     ),
     heading: "Zeit",
     name: "time",

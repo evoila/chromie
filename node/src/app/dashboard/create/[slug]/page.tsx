@@ -184,7 +184,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       ))}
       <div
         className="flex size-full flex-col justify-center gap-12"
-        style={{ top: `${sections.length * 100}%` }}
+        style={{ top: `${sections.length + 1 * 100}%` }}
       >
         <Button
           aspect="square"
