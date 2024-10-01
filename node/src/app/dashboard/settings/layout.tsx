@@ -5,7 +5,11 @@ import React from "react";
 import { Card } from "@/components/card";
 import { validateRequest } from "@/lib/auth";
 
-const Nav: React.FC = () => {
+interface NavProps {
+  role: string;
+}
+
+const Nav: React.FC<NavProps> = ({ role }) => {
   return (
     <nav className="flex size-full flex-col">
       <div className="h-12 border-b">
@@ -18,22 +22,26 @@ const Nav: React.FC = () => {
         </Link>
       </div>
       <div className="h-12 border-b">
-        <Link
-          className="flex size-full items-center justify-start gap-3 px-3 hover:bg-muted"
-          href="/dashboard/settings/time-ranges"
-        >
-          <Clock className="size-4" />
-          Time Ranges
-        </Link>
+        {role === "responder" && (
+          <Link
+            className="flex size-full items-center justify-start gap-3 px-3 hover:bg-muted"
+            href="/dashboard/settings/time-ranges"
+          >
+            <Clock className="size-4" />
+            Time Ranges
+          </Link>
+        )}
       </div>
       <div className="h-12">
-        <Link
-          className="flex size-full items-center justify-start gap-3 px-3 hover:bg-muted"
-          href="/dashboard/settings/users"
-        >
-          <Users className="size-4" />
-          Users
-        </Link>
+        {role === "responder" && (
+          <Link
+            className="flex size-full items-center justify-start gap-3 px-3 hover:bg-muted"
+            href="/dashboard/settings/users"
+          >
+            <Users className="size-4" />
+            Users
+          </Link>
+        )}
       </div>
     </nav>
   );
@@ -50,9 +58,7 @@ export default async function Layout({
 
   return (
     <Card className="grid size-full grid-cols-6">
-      <div className="border-r">
-        <Nav />
-      </div>
+      <div className="border-r">{user.role && <Nav role={user.role} />}</div>
       <div className="col-span-5 overflow-y-auto">{children}</div>
     </Card>
   );
