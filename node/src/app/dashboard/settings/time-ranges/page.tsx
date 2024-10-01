@@ -273,7 +273,10 @@ const Calendar: React.FC = () => {
           {selection.start ? format(selection.start, "dd.MM.yyyy HH:mm") : ""}
         </div>
         <div>
-          End: {selection.end ? format(selection.end, "dd.MM.yyyy HH:mm") : ""}
+          End:{" "}
+          {selection.end
+            ? format(addHours(selection.end, 1), "dd.MM.yyyy HH:mm")
+            : ""}
         </div>
         <form.Subscribe selector={(state) => [state.canSubmit]}>
           {([canSubmit]) => (
