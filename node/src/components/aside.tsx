@@ -9,7 +9,7 @@ import { Nav } from "@/components/nav";
 
 export const Aside: React.FC = () => {
   return (
-    <aside className="flex flex-col justify-between gap-12">
+    <aside className="flex flex-col justify-between gap-12 rounded-lg bg-foreground">
       <Nav></Nav>
       <Button aspect="square" intent="light" onClick={() => signOut()}>
         <LogOut />
